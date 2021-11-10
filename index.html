@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>HTML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="">
+  <script src="https://freelancerdevelopers.com/public/js/jquery-3.4.1-min.js"></script>
+</head>
+
+<body>
+  <p>Demo-formRestApiCotizaciones</p>
+  
+    <div>
+      <label for="quantity">Edad *</label>
+      <input type="number" id="age" name="age" min="18" max="100" placeholder="0" required>
+    </div>
+    <hr/>
+    <div>
+      <label for="quantity">CP *</label>
+      <input type="number" id="cp" name="cp" min="5" max="10" placeholder="0" required>
+    </div>
+    <hr/>
+    <div>
+      <label for="quantity">Genero *</label>
+      <input type="text" id="gender" name="gender"  placeholder="masculino/femenino" required>
+    </div>
+    <div>
+      <button onclick="fnsend()">Enviar</button>
+    </div>
+
+  
+</body>
+</html>
+<script type="text/javascript">
+
+function fnsend(){
+  var age = document.getElementById("age").value;
+  var cp = document.getElementById("cp").value;
+  var gender = document.getElementById("gender").value;
+
+  var settings = {
+  "url": "http://18.191.13.98:3000/api/v1/cotizador",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "cp": cp,
+    "edad": age,
+    "genero": gender
+  }),
+};
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+
+
+}
+
+
+
+
+
+
+</script>
